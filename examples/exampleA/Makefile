@@ -32,5 +32,4 @@ valid:
 
 first: init lock
 	terraform apply -target aws_s3_bucket.state_bucket -lock=false -auto-approve
-	mv remote_state.tf.template remote_state.tf
-	echo "!!!UPDATE remote_state file!!!!"
+    terraform apply -target module.statebucket.local_file.remote_state

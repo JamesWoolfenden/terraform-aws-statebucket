@@ -2,8 +2,7 @@ terraform {
   # fix the provider version
   version = "1"
 
-  #rename  <account-name> to be the account short name - test-account-11111111
-  #rename role_arn to be the role to assume to access the bucket
+  #add role_arn to use assumed roles to access the bucket
   backend "s3" {
     encrypt        = true
     bucket         = "${account_number}-terraform-state"
