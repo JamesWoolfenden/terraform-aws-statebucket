@@ -12,7 +12,7 @@ plan: init
 	terraform plan -refresh=true
 
 lock:
-	terraform apply -target aws_dynamodb_table.dynamodb-terraform-state-lock -lock=false -auto-approve
+	terraform apply -target module.statebucket.aws_dynamodb_table.dynamodb-state-lock -auto-approve
 
 build: init
 	terraform apply -auto-approve
@@ -31,5 +31,6 @@ valid:
 	terraform fmt -check=true -diff=true
 
 first: init lock
-	terraform apply -target aws_s3_bucket.state_bucket -lock=false -auto-approve
-    terraform apply -target module.statebucket.local_file.remote_state
+	terraform apply -target module.statebucket.aws_s3_bucket.statebucket -auto-approve
+	terraform apply -target module.statebucket.local_file.remote_state -lock=false -auto-approve
+	terraform init -force-copy
