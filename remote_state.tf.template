@@ -1,0 +1,14 @@
+terraform {
+  # fix the provider version
+  version = "1"
+
+  #rename  <account-name> to be the account short name - test-account-11111111
+  #rename role_arn to be the role to assume to access the bucket
+  backend "s3" {
+    encrypt        = true
+    bucket         = "${account_number}-terraform-state"
+    key            = "state-bucket/terraform.tfstate"
+    dynamodb_table = "dynamodb-state-lock"
+    region         = "eu-west-1"
+  }
+}
