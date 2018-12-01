@@ -8,6 +8,6 @@ terraform {
     bucket         = "${account_number}-terraform-state"
     key            = "state-bucket/terraform.tfstate"
     dynamodb_table = "dynamodb-state-lock"
-    region         = "eu-west-1"
+    region         = "${aws_region}"
   }
 }

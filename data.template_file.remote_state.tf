@@ -3,5 +3,6 @@ data "template_file" "remote_state" {
 
   vars {
     account_number = "${data.aws_caller_identity.current.account_id}"
+    aws_region     = "${data.aws_region.current.name}"
   }
 }
