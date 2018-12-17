@@ -14,6 +14,15 @@ On the second and subsequent runs you use:
 make build
 ``` 
 
+The module uses a tagging scheme based on the map variable common_tags
+This needs to supply as a minimum (in your terraform.tfvars):
+common_tags = {
+    Application = "terraform"
+    Module      = "statebucket"
+    Environment = "develop"
+}
+
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
