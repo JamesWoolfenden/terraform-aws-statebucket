@@ -4,7 +4,8 @@ resource "aws_s3_bucket" "statebucket" {
   force_destroy = "false"
 
   versioning {
-    enabled = true
+    enabled    = true
+    mfa_delete = true
   }
 
   tags = "${merge(var.common_tags,

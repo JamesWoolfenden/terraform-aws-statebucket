@@ -3,4 +3,3 @@ common_tags = {
     module      = "statebucket"
     environment = "develop"
 }
-
