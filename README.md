@@ -42,6 +42,6 @@ Environment = "develop"
 
 ## Outputs
 
-| Name               | Description |
-| ------------------ | ----------- |
-| bucket_domain_name |             |
+| Name               | Description             |
+| ------------------ | ----------------------- |
+| bucket_domain_name | The FQDN for the bucket |
