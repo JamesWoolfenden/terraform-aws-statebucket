@@ -3,21 +3,27 @@
 
 [![Slalom][logo]](https://slalom.com)
 
-# terraform-aws-s3 [![Build Status](https://travis-ci.org/jameswoolfenden/terraform-aws-statebucket.svg?branch=master)](https://travis-ci.org/jameswoolfenden/terraform-aws-statebucket) [![Latest Release](https://img.shields.io/github/release/jameswoolfenden/terraform-aws-statebucket.svg)](https://github.com/jameswoolfenden/terraform-aws-statebucket/releases/latest)
+# terraform-aws-statebucket [![Build Status](https://travis-ci.org/jameswoolfenden/terraform-aws-statebucket.svg?branch=master)](https://travis-ci.org/jameswoolfenden/terraform-aws-statebucket) [![Latest Release](https://img.shields.io/github/release/jameswoolfenden/terraform-aws-statebucket.svg)](https://github.com/jameswoolfenden/terraform-aws-statebucket/releases/latest)
+
 
 Terraform module to provision an AWS [`Codecommit`](https://aws.amazon.com/codecommit/) CI/CD system.
 
+
 ---
 
-This project uses the build-harness this a is modified version of the project ["SweetOps"](https://cpco.io/sweetops) from Cloudposse. Sweet indeed.
-[<img align="right" title="Share via Email" src="https://docs.cloudposse.com/images/ionicons/ios-email-outline-2.0.1-16x16-999999.svg"/>][share_email]
-[<img align="right" title="Share on Google+" src="https://docs.cloudposse.com/images/ionicons/social-googleplus-outline-2.0.1-16x16-999999.svg" />][share_googleplus]
-[<img align="right" title="Share on Facebook" src="https://docs.cloudposse.com/images/ionicons/social-facebook-outline-2.0.1-16x16-999999.svg" />][share_facebook]
-[<img align="right" title="Share on Reddit" src="https://docs.cloudposse.com/images/ionicons/social-reddit-outline-2.0.1-16x16-999999.svg" />][share_reddit]
-[<img align="right" title="Share on LinkedIn" src="https://docs.cloudposse.com/images/ionicons/social-linkedin-outline-2.0.1-16x16-999999.svg" />][share_linkedin]
-[<img align="right" title="Share on Twitter" src="https://docs.cloudposse.com/images/ionicons/social-twitter-outline-2.0.1-16x16-999999.svg" />][share_twitter]
+This project uses the "build-harness" a modified version of the project ["SweetOps"](https://cpco.io/sweetops) from Cloudposse. Sweet indeed.
+
 
 It's 100% Open Source and licensed under the [APACHE2](LICENSE).
+
+
+
+
+
+
+
+
+
 
 ## Usage
 
@@ -25,25 +31,62 @@ Include this repository as a module in your existing terraform code:
 
 ```hcl
 module "statebucket" {
-  source     = "git::https://github.com/jameswoolfenden/terraform-aws-statebucket.git?ref=master"
+source      = "JamesWoolfenden/statebucket/aws"
+version     = "0.0.4"
+common_tags = "${var.common_tags}"
 }
 ```
 
-## Makefile Targets
 
-```cli
+
+
+
+
+# Instructions
+
+When working with Terraform as part of a team, instead of a local terrraform.tfstate file, a shared remote state store is required, for AWS this is S3 bucket.
+But if we want to automate everything via Terraform?
+Traditionally we would have to create the initial bucket by hand via the console or by the cli and the resource unmanaged.
+The module and example solves the issue of creating a state bucket in Terraform using Terrraform itself.
+
+## Chicken then Egg
+
+The Makefile in folder _examples\examplesA_ has a number of tasks, one specifically to create the initial bucket:
+
+```make
+make first
+```
+
+This makes the lock DB table, the state (S3) bucket, fills out and creates the remote_state.tf file and then copies the state from the local disk to the bucket.PHEW. The State of the bucket is now managed along with any future resources.
+
+On the second and subsequent runs you use:
+
+```make
+make build
+```
+
+## Features
+
+This module implements state locking via DynamoDB, Versioning on files within the bucket and finally MFA Based deletes of the bucket itself.
+
+The module also uses a tagging based on the map variable common_tags scheme.
+
+This Scheme here uses as a minimum (in your terraform.tfvars):
+common_tags = {
+Application = "terraform"
+Module = "statebucket"
+Environment = "develop"
+}
+## Makefile Targets
+```
 Available targets:
 
-  help/all:
-                          Display help for all targets
-  help/short:
-                        This help short screen
-  help:
-                              Help screen
+  help/all:                          Display help for all targets
+  help/short:                        This help short screen
+  help:                              Help screen
   lint                                Lint terraform code
 
 ```
-
 ## Inputs
 
 | Name | Description | Type | Default | Required |
@@ -56,11 +99,27 @@ Available targets:
 |------|-------------|
 | bucket_domain_name | The FQDN for the bucket |
 
+## Makefile Targets
+```
+Available targets:
+
+  help/all:                          Display help for all targets
+  help/short:                        This help short screen
+  help:                              Help screen
+  lint                                Lint terraform code
+
+```
+
+
+
 ## Related Projects
 
 Check out these related projects.
 
 - [terraform-aws-s3](https://github.com/jameswoolfenden/terraform-aws-s3) - S3 buckets
+
+
+
 
 ## Help
 
@@ -68,11 +127,15 @@ Check out these related projects.
 
 File a GitHub [issue](https://github.com/jameswoolfenden/terraform-aws-statebucket/issues).
 
+
+
 ## Terraform Module Development
+
+
 
 ## Slack Community
 
-Join their [Open Source Community][slack] on Slack.
+You can join the Cloudposse community [Open Source Community][slack] on Slack.
 
 ## Contributing
 
@@ -80,9 +143,16 @@ Join their [Open Source Community][slack] on Slack.
 
 Please use the [issue tracker](https://github.com/jameswoolfenden/terraform-aws-statebucket/issues) to report any bugs or file feature requests.
 
+
+
 ## Copyrights
 
 Copyright © 2019-2019 [Slalom, LLC](https://slalom.com)
+
+
+
+
+
 
 ## License
 
@@ -107,6 +177,17 @@ See [LICENSE](LICENSE) for full details.
     specific language governing permissions and limitations
     under the License.
 
+
+
+
+
+
+
+
+
+
+
+
 ### Contributors
 
 |  [![James Woolfenden][jameswoolfenden_avatar]][jameswoolfenden_homepage]<br/>[James Woolfenden][jameswoolfenden_homepage] |
@@ -115,23 +196,26 @@ See [LICENSE](LICENSE) for full details.
   [jameswoolfenden_homepage]: https://github.com/jameswoolfenden
   [jameswoolfenden_avatar]: https://github.com/jameswoolfenden.png?size=150
 
+
+
 [![README Footer][readme_footer_img]][readme_footer_link]
 [![Beacon][beacon]][website]
 
-  [logo]: https://slalom.com/sites/all/themes/slalom_bootstrap/images/slalom-logo-white@2x.png
-  [website]: https://slalom.com
-  [github]: https://github.com/jameswoolfenden
-  [slack]: https://cpco.io/slack
-  [linkedin]: https://www.linkedin.com/company/slalom-consulting/
-  [twitter]: https://twitter.com/Slalom
-  [readme_header_img]: https://cloudposse.com/readme/header/img?repo=jameswoolfenden/terraform-aws-statebucket
-  [readme_header_link]: https://cloudposse.com/readme/header/link?repo=jameswoolfenden/terraform-aws-statebucket
-  [readme_footer_img]: https://cloudposse.com/readme/footer/img?repo=jameswoolfenden/terraform-aws-statebucket
-  [readme_footer_link]: https://cloudposse.com/readme/footer/link?repo=jameswoolfenden/terraform-aws-statebucket
-  [share_twitter]: https://twitter.com/intent/tweet/?text=terraform-aws-s3&url=https://github.com/jameswoolfenden/terraform-aws-statebucket
-  [share_linkedin]: https://www.linkedin.com/shareArticle?mini=true&title=terraform-aws-s3&url=https://github.com/jameswoolfenden/terraform-aws-statebucket
-  [share_reddit]: https://reddit.com/submit/?url=https://github.com/jameswoolfenden/terraform-aws-statebucket
-  [share_facebook]: https://facebook.com/sharer/sharer.php?u=https://github.com/jameswoolfenden/terraform-aws-statebucket
-  [share_googleplus]: https://plus.google.com/share?url=https://github.com/jameswoolfenden/terraform-aws-statebucket
-  [share_email]: mailto:?subject=terraform-aws-s3&body=https://github.com/jameswoolfenden/terraform-aws-statebucket
-  [beacon]: https://ga-beacon.cloudposse.com/UA-76589703-4/jameswoolfenden/terraform-aws-statebucket?pixel&cs=github&cm=readme&an=terraform-aws-statebucket
+[logo]: https://slalom.com/sites/all/themes/slalom_bootstrap/images/slalom-logo-white@2x.png
+[website]: https://slalom.com
+[github]: https://github.com/jameswoolfenden
+[slack]: https://cpco.io/slack
+[linkedin]: https://www.linkedin.com/company/slalom-consulting/
+[twitter]: https://twitter.com/Slalom
+
+[readme_header_img]: https://cloudposse.com/readme/header/img?repo=jameswoolfenden/terraform-aws-statebucket
+[readme_header_link]: https://cloudposse.com/readme/header/link?repo=jameswoolfenden/terraform-aws-statebucket
+[readme_footer_img]: https://cloudposse.com/readme/footer/img?repo=jameswoolfenden/terraform-aws-statebucket
+[readme_footer_link]: https://cloudposse.com/readme/footer/link?repo=jameswoolfenden/terraform-aws-statebucket
+[share_twitter]: https://twitter.com/intent/tweet/?text=terraform-aws-statebucket&url=https://github.com/jameswoolfenden/terraform-aws-statebucket
+[share_linkedin]: https://www.linkedin.com/shareArticle?mini=true&title=terraform-aws-statebucket&url=https://github.com/jameswoolfenden/terraform-aws-statebucket
+[share_reddit]: https://reddit.com/submit/?url=https://github.com/jameswoolfenden/terraform-aws-statebucket
+[share_facebook]: https://facebook.com/sharer/sharer.php?u=https://github.com/jameswoolfenden/terraform-aws-statebucket
+[share_googleplus]: https://plus.google.com/share?url=https://github.com/jameswoolfenden/terraform-aws-statebucket
+[share_email]: mailto:?subject=terraform-aws-statebucket&body=https://github.com/jameswoolfenden/terraform-aws-statebucket
+[beacon]: https://ga-beacon.cloudposse.com/UA-76589703-4/jameswoolfenden/terraform-aws-statebucket?pixel&cs=github&cm=readme&an=terraform-aws-statebucket

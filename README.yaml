@@ -5,7 +5,7 @@
 #
 
 # Name of this project
-name: terraform-aws-s3
+name: terraform-aws-statebucket
 
 # Tags of this project
 tags:
@@ -57,13 +57,17 @@ usage: |-
 
   ```hcl
   module "statebucket" {
-    source     = "git::https://github.com/jameswoolfenden/terraform-aws-statebucket.git?ref=master"
+  source      = "JamesWoolfenden/statebucket/aws"
+  version     = "0.0.4"
+  common_tags = "${var.common_tags}"
   }
   ```
 
 include:
+  - "docs/instructions.md"
   - "docs/targets.md"
   - "docs/terraform.md"
+  - "docs/targets.md"
 
 # Contributors to this project
 contributors:
