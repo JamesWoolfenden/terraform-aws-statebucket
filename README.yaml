@@ -31,16 +31,16 @@ copyrights:
     year: "2019"
 
 # Canonical GitHub repo
-github_repo: jameswoolfenden/terraform-aws-statebucket
+github_repo: JamesWoolfenden/terraform-aws-statebucket
 
 # Badges to display
 badges:
   - name: "Build Status"
-    image: "https://travis-ci.org/jameswoolfenden/terraform-aws-statebucket.svg?branch=master"
-    url: "https://travis-ci.org/jameswoolfenden/terraform-aws-statebucket"
+    image: "https://travis-ci.org/JamesWoolfenden/terraform-aws-statebucket.svg?branch=master"
+    url: "https://travis-ci.org/JamesWoolfenden/terraform-aws-statebucket"
   - name: "Latest Release"
-    image: "https://img.shields.io/github/release/jameswoolfenden/terraform-aws-statebucket.svg"
-    url: "https://github.com/jameswoolfenden/terraform-aws-statebucket/releases/latest"
+    image: "https://img.shields.io/github/release/JamesWoolfenden/terraform-aws-statebucket.svg"
+    url: "https://github.com/JamesWoolfenden/terraform-aws-statebucket/releases/latest"
 
 related:
   - name: "terraform-aws-s3"
