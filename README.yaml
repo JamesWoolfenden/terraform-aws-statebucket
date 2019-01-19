@@ -36,8 +36,8 @@ github_repo: JamesWoolfenden/terraform-aws-statebucket
 # Badges to display
 badges:
   - name: "Build Status"
-    image: "https://travis-ci.org/JamesWoolfenden/terraform-aws-statebucket.svg?branch=master"
-    url: "https://travis-ci.org/JamesWoolfenden/terraform-aws-statebucket"
+    image: "https://travis-ci.com/JamesWoolfenden/terraform-aws-statebucket.svg?branch=master"
+    url: "https://travis-ci.com/JamesWoolfenden/terraform-aws-statebucket"
   - name: "Latest Release"
     image: "https://img.shields.io/github/release/JamesWoolfenden/terraform-aws-statebucket.svg"
     url: "https://github.com/JamesWoolfenden/terraform-aws-statebucket/releases/latest"

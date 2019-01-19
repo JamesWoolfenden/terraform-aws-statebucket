@@ -2,10 +2,10 @@
 
 [![Slalom][logo]](https://slalom.com)
 
-# terraform-aws-statebucket [![Build Status](https://travis-ci.org/JamesWoolfenden/terraform-aws-statebucket.svg?branch=master)](https://travis-ci.org/JamesWoolfenden/terraform-aws-statebucket) [![Latest Release](https://img.shields.io/github/release/JamesWoolfenden/terraform-aws-statebucket.svg)](https://github.com/JamesWoolfenden/terraform-aws-statebucket/releases/latest)
+# terraform-aws-statebucket [![Build Status](https://travis-ci.com/JamesWoolfenden/terraform-aws-statebucket.svg?branch=master)](https://travis-ci.com/JamesWoolfenden/terraform-aws-statebucket) [![Latest Release](https://img.shields.io/github/release/JamesWoolfenden/terraform-aws-statebucket.svg)](https://github.com/JamesWoolfenden/terraform-aws-statebucket/releases/latest)
 
 
-Terraform module to provision an AWS [`Codecommit`](https://aws.amazon.com/codecommit/) CI/CD system.
+Terraform module to provision a secure terraform state bucket for team use of IAC.
 
 
 ---
