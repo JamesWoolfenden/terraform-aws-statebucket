@@ -1,5 +1,5 @@
 common_tags = {
-    application = "terraform"
-    module      = "statebucket"
-    environment = "develop"
+  application = "terraform"
+  module      = "statebucket"
+  environment = "develop"
 }
