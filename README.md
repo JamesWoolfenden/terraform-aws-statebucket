@@ -14,16 +14,16 @@ It's 100% Open Source and licensed under the [APACHE2](LICENSE).
 Include this repository as a module in your existing terraform code:
 
 ```hcl
-module "statebucket" {
-source      = "JamesWoolfenden/statebucket/aws"
-version     = "0.0.4"
-common_tags = var.common_tags
+module statebucket {
+  source      = "JamesWoolfenden/statebucket/aws"
+  version     = "0.2.25"
+  common_tags = var.common_tags
 }
 ```
 
 # Instructions
 
-When working with Terraform as part of a team, instead of a local terrraform.tfstate file, a shared remote state store is required, for AWS this is S3 bucket.
+When working with Terraform as part of a team, instead of a local **terrraform.tfstate** file, a shared remote state store is required, for AWS this is S3 bucket.
 But if we want to automate everything via Terraform?
 Traditionally we would have to create the initial bucket by hand via the console or by the cli and the resource unmanaged.
 The module and example solves the issue of creating a state bucket in Terraform using Terrraform itself.
@@ -51,11 +51,14 @@ This module implements state locking via DynamoDB, Versioning on files within th
 The module also uses a tagging based on the map variable common_tags scheme.
 
 This Scheme here uses as a minimum (in your terraform.tfvars):
+
+```HCL
 common_tags = {
 Application = "terraform"
 Module = "statebucket"
 Environment = "develop"
 }
+```
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Inputs
