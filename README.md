@@ -11,7 +11,7 @@ It's 100% Open Source and licensed under the [APACHE2](LICENSE).
 
 ## Usage
 
-Include this repository as a module in your existing terraform code:
+Include this repository as a module in your existing Terraform code:
 
 ```terraform
 module statebucket {
@@ -23,7 +23,7 @@ module statebucket {
 
 # Instructions
 
-When working with Terraform as part of a team, instead of a local **terrraform.tfstate** file, a shared remote state store is required, for AWS this is S3 bucket.
+When working with Terraform as part of a team, instead of a local **terrraform.tfstate** file, a shared remote state store is required, for AWS this is a S3 bucket.
 But if we want to automate everything via Terraform?
 Traditionally we would have to create the initial bucket by hand via the console or by the cli and the resource unmanaged.
 The module and example solves the issue of creating a state bucket in Terraform using Terrraform itself.
@@ -74,7 +74,6 @@ Environment = "develop"
 | bucket\_domain\_name | The FQDN for the bucket |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-
 
 ## Related Projects
 
