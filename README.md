@@ -13,7 +13,7 @@ It's 100% Open Source and licensed under the [APACHE2](LICENSE).
 
 Include this repository as a module in your existing terraform code:
 
-```hcl
+```terraform
 module statebucket {
   source      = "JamesWoolfenden/statebucket/aws"
   version     = "0.2.25"
