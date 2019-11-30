@@ -61,19 +61,7 @@ Environment = "develop"
 ```
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-## Inputs
-
-| Name | Description | Type | Default | Required |
-|------|-------------|:----:|:-----:|:-----:|
-| common\_tags | This is a map type for applying tags on resources | map | n/a | yes |
-
-## Outputs
-
-| Name | Description |
-|------|-------------|
-| bucket\_domain\_name | The FQDN for the bucket |
-| statebucket | The state bucket details |
-
+I_WANT_TO_BE_REPLACED
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## Related Projects
