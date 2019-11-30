@@ -14,3 +14,4 @@ build-harness
 *~HEAD
 *backup
 *.orig
+*.bak
