@@ -80,7 +80,7 @@ common_tags = {
   application = "terraform"
   module      = "statebucket"
   environment = "develop"
-  authors      = "James Woolfenden, Oliver Smit"
+  authors     = "James Woolfenden, Oliver Smit"
 }
 ```
 
