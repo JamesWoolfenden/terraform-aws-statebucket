@@ -1,11 +1,10 @@
 resource "aws_s3_bucket" "statebucket" {
   bucket        = "${data.aws_caller_identity.current.account_id}-terraform-state"
-  acl           = "private"
-  force_destroy = "false"
-
+  acl           = var.acl
+  force_destroy = var.force_destroy
   versioning {
-    enabled    = true
-    mfa_delete = true
+    enabled    = var.versioning["enabled"]
+    mfa_delete = var.versioning["mfa_delete"]
   }
 
   tags = var.common_tags

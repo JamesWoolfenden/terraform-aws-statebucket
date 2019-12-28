@@ -16,7 +16,7 @@ Include this repository as a module in your existing Terraform code:
 ```terraform
 module statebucket {
   source      = "JamesWoolfenden/statebucket/aws"
-  version     = "0.2.25"
+  version     = "0.2.32"
   common_tags = var.common_tags
 }
 ```
@@ -54,9 +54,10 @@ This Scheme here uses as a minimum (in your terraform.tfvars):
 
 ```HCL
 common_tags = {
-Application = "terraform"
-Module = "statebucket"
-Environment = "develop"
+  application = "terraform"
+  module      = "statebucket"
+  environment = "develop"
+  author      = "James Woolfenden"
 }
 ```
 
@@ -65,7 +66,10 @@ Environment = "develop"
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| common\_tags | This is a map type for applying tags on resources | map | n/a | yes |
+| acl | Not Likely/Unwise to want a public state bucket, but here's the option | string | `"private"` | no |
+| common\_tags | This is the common tags schme map type for applying tags on resources | map | n/a | yes |
+| force\_destroy | Set force_destroy property - unlikely to anything else but may want rid of at some point | string | `"false"` | no |
+| versioning | Object to control version behaviour | map | `{ "enabled": true, "mfa_delete": true }` | no |
 
 ## Outputs
 
