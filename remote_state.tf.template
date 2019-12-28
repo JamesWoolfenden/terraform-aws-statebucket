@@ -1,8 +1,9 @@
 terraform {
-  # fix the provider version
-  version = "1"
+  # Fix the provider version
+  required_version = "~> 0.12.6"
 
-  #add role_arn to use assumed roles to access the bucket
+
+  # Add role_arn to use assumed roles to access the bucket
   backend "s3" {
     encrypt        = true
     bucket         = "${account_number}-terraform-state"

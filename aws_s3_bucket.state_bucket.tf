@@ -5,7 +5,7 @@ resource "aws_s3_bucket" "statebucket" {
 
   versioning {
     enabled    = true
-    mfa_delete = true
+    mfa_delete = s3_mfa_delete
   }
 
   tags = var.common_tags
