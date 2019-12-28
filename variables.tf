@@ -1,5 +1,5 @@
 variable "common_tags" {
-  description = "This is the common tags schme map type for applying tags on resources"
+  description = "This is the common tags scheme map type for applying tags on resources"
   type        = map
 }
 

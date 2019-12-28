@@ -1,4 +1,3 @@
-
 [![Slalom][logo]](https://slalom.com)
 
 # terraform-aws-statebucket [![Build Status](https://travis-ci.com/JamesWoolfenden/terraform-aws-statebucket.svg?branch=master)](https://travis-ci.com/JamesWoolfenden/terraform-aws-statebucket) [![Latest Release](https://img.shields.io/github/release/JamesWoolfenden/terraform-aws-statebucket.svg)](https://github.com/JamesWoolfenden/terraform-aws-statebucket/releases/latest)
@@ -9,30 +8,54 @@ Terraform module to provision a secure terraform state bucket for team use of IA
 
 It's 100% Open Source and licensed under the [APACHE2](LICENSE).
 
+## Versions
+
+| Terraform Version | Statebucket Release |
+| :---------------: | :-----------------: |
+|      0.12.x       |        0.3.0        |
+|      0.11.x       |       0.2.25        |
+
 ## Usage
 
 Include this repository as a module in your existing Terraform code:
 
-```terraform
+```HCL
 module statebucket {
   source      = "JamesWoolfenden/statebucket/aws"
-  version     = "0.2.32"
+  version     = "0.3.1"
   common_tags = var.common_tags
+}
+```
+
+Set-up as per example.
+
+Use the generated `remote_state.tf` and change the bucket key for each subsequent service as required
+
+```hcl
+terraform {
+...
+
+  backend "s3" {
+    ...
+
+    key = "<your-service>/<provider-service>/terraform.tfstate"
+    ...
+  }
 }
 ```
 
 # Instructions
 
-When working with Terraform as part of a team, instead of a local **terrraform.tfstate** file, a shared remote state store is required, for AWS this is a S3 bucket.
+When working with Terraform as part of a team, instead of a local **terraform.tfstate** file, a shared remote state store is required, for AWS this is a S3 bucket.
 But if we want to automate everything via Terraform?
 Traditionally we would have to create the initial bucket by hand via the console or by the cli and the resource unmanaged.
-The module and example solves the issue of creating a state bucket in Terraform using Terrraform itself.
+The module and example solves the issue of creating a state bucket in Terraform using Terraform itself.
 
 ## Chicken then Egg
 
 The Makefile in folder _examples\examplesA_ has a number of tasks, one specifically to create the initial bucket:
 
-```make
+```sh
 make first
 ```
 
@@ -40,7 +63,7 @@ This makes the lock DB table, the state (S3) bucket, fills out and creates the r
 
 On the second and subsequent runs you use:
 
-```make
+```sh
 make build
 ```
 
@@ -57,7 +80,7 @@ common_tags = {
   application = "terraform"
   module      = "statebucket"
   environment = "develop"
-  author      = "James Woolfenden"
+  authors      = "James Woolfenden, Oliver Smit"
 }
 ```
 
@@ -67,7 +90,7 @@ common_tags = {
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | acl | Not Likely/Unwise to want a public state bucket, but here's the option | string | `"private"` | no |
-| common\_tags | This is the common tags schme map type for applying tags on resources | map | n/a | yes |
+| common\_tags | This is the common tags scheme map type for applying tags on resources | map | n/a | yes |
 | force\_destroy | Set force_destroy property - unlikely to anything else but may want rid of at some point | string | `"false"` | no |
 | versioning | Object to control version behaviour | map | `{ "enabled": true, "mfa_delete": true }` | no |
 
@@ -127,10 +150,12 @@ under the License.
 
 ### Contributors
 
-  [![James Woolfenden][jameswoolfenden_avatar]][jameswoolfenden_homepage]<br/>[James Woolfenden][jameswoolfenden_homepage]
+[![James Woolfenden][jameswoolfenden_avatar]][jameswoolfenden_homepage]<br/>[James Woolfenden][jameswoolfenden_homepage]<br/>[![Oliver Smit][olmesm_avatar]][olmesm_homepage]<br/>[Oliver Smit][olmesm_homepage]
 
-  [jameswoolfenden_homepage]: https://github.com/jameswoolfenden
-  [jameswoolfenden_avatar]: https://github.com/jameswoolfenden.png?size=150
+[jameswoolfenden_homepage]: https://github.com/jameswoolfenden
+[jameswoolfenden_avatar]: https://github.com/jameswoolfenden.png?size=150
+[olmesm_homepage]: https://github.com/olmesm
+[olmesm_avatar]: https://github.com/olmesm.png?size=150
 
 [logo]: https://gist.githubusercontent.com/JamesWoolfenden/5c457434351e9fe732ca22b78fdd7d5e/raw/15933294ae2b00f5dba6557d2be88f4b4da21201/slalom-logo.png
 [website]: https://slalom.com
