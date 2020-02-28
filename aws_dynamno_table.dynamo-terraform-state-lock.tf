@@ -1,4 +1,6 @@
 resource "aws_dynamodb_table" "dynamodb-state-lock" {
+  #checkov:skip=CKV_AWS_28: "Ensure Dynamodb point in time recovery (backup) is enabled"
+
   name           = "dynamodb-state-lock"
   hash_key       = "LockID"
   read_capacity  = 20
