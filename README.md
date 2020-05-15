@@ -102,12 +102,11 @@ common_tags = {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:-----:|
-| access\_block | n/a | `map` | <pre>{<br>  "block_public_acls": false,<br>  "block_public_policy": false,<br>  "ignore_public_acls": false,<br>  "restrict_public_buckets": false<br>}<br></pre> | no |
 | acl | Not Likely/Unwise to want a public state bucket, but here's the option | `string` | `"private"` | no |
 | common\_tags | This is the common tags scheme map type for applying tags on resources | `map` | n/a | yes |
 | force\_destroy | Set force\_destroy property - unlikely to anything else but may want rid of at some point | `bool` | `false` | no |
+| mfa\_delete | Object to control version behaviour | `bool` | `true` | no |
 | sse\_algorithm | The type of encryption algorithm to use | `string` | `"aws:kms"` | no |
-| versioning | Object to control version behaviour | `map` | <pre>{<br>  "enabled": true,<br>  "mfa_delete": true<br>}<br></pre> | no |
 
 ## Outputs
 

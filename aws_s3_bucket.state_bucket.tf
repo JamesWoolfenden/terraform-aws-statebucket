@@ -5,8 +5,8 @@ resource "aws_s3_bucket" "state_bucket" {
   force_destroy = var.force_destroy
 
   versioning {
-    enabled    = var.versioning["enabled"]
-    mfa_delete = var.versioning["mfa_delete"]
+    enabled    = true
+    mfa_delete = var.mfa_delete
   }
 
   server_side_encryption_configuration {
