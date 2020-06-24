@@ -5,13 +5,18 @@
 remote_state.tf
 
 # Module directory
+.terraform/
 .terraform
 .idea
 *.iml
-.build-harness
-build-harness
+*.orig
+
 *.ini
 *~HEAD
 *backup
-*.orig
+*.ini
+tmp
+lambda
+*~HEAD
+*backup
 *.bak

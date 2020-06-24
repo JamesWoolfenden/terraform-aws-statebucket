@@ -15,7 +15,7 @@ variable "force_destroy" {
 
 variable "mfa_delete" {
   description = "Object to control version behaviour"
-  default     = true
+  default     = false
 }
 
 variable "sse_algorithm" {

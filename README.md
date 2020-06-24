@@ -78,7 +78,7 @@ This module implements state locking via DynamoDB, Versioning on files within th
 
 The module also uses a tagging based on the map variable common_tags scheme.
 
-This Scheme here uses as a minimum (in your terraform.tfvars):
+This Scheme here uses as a minimum (see *examplea.auto.tfvars*):
 
 ```HCL
 common_tags = {
@@ -105,7 +105,7 @@ common_tags = {
 | acl | Not Likely/Unwise to want a public state bucket, but here's the option | `string` | `"private"` | no |
 | common\_tags | This is the common tags scheme map type for applying tags on resources | `map` | n/a | yes |
 | force\_destroy | Set force\_destroy property - unlikely to anything else but may want rid of at some point | `bool` | `false` | no |
-| mfa\_delete | Object to control version behaviour | `bool` | `true` | no |
+| mfa\_delete | Object to control version behaviour | `bool` | `false` | no |
 | sse\_algorithm | The type of encryption algorithm to use | `string` | `"aws:kms"` | no |
 
 ## Outputs
@@ -116,6 +116,17 @@ common_tags = {
 | statebucket | The state bucket details |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+
+## Checkov Security tests
+
+This module is scanned by Checkov - <https://checkov.io> and has 2 exclusions added:
+
+```checkov
+  #checkov:skip=CKV_AWS_18: "Ensure the S3 bucket has access logging enabled"
+  #checkov:skip=CKV_AWS_52: "Ensure S3 bucket has MFA delete enabled"
+```
+
+These are added because access logging was not required, and that MFA delete was unsuitable and difficult to automate.
 
 ## Related Projects
 
