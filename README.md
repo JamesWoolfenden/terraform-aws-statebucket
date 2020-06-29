@@ -90,6 +90,10 @@ common_tags = {
 ```
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Requirements
+
+No requirements.
+
 ## Providers
 
 | Name | Version |
@@ -101,7 +105,7 @@ common_tags = {
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | acl | Not Likely/Unwise to want a public state bucket, but here's the option | `string` | `"private"` | no |
 | common\_tags | This is the common tags scheme map type for applying tags on resources | `map` | n/a | yes |
 | force\_destroy | Set force\_destroy property - unlikely to anything else but may want rid of at some point | `bool` | `false` | no |
@@ -185,8 +189,8 @@ under the License.
 [logo]: https://gist.githubusercontent.com/JamesWoolfenden/5c457434351e9fe732ca22b78fdd7d5e/raw/15933294ae2b00f5dba6557d2be88f4b4da21201/slalom-logo.png
 [website]: https://slalom.com
 [github]: https://github.com/jameswoolfenden
-[linkedin]: https://www.linkedin.com/company/slalom-consulting/
-[twitter]: https://twitter.com/Slalom
+[linkedin]: https://www.linkedin.com/in/jameswoolfenden/
+[twitter]: https://twitter.com/JimWoolfenden
 
 [share_twitter]: https://twitter.com/intent/tweet/?text=terraform-aws-statebucket&url=https://github.com/JamesWoolfenden/terraform-aws-statebucket
 [share_linkedin]: https://www.linkedin.com/shareArticle?mini=true&title=terraform-aws-statebucket&url=https://github.com/JamesWoolfenden/terraform-aws-statebucket
