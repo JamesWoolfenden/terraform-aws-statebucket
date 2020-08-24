@@ -9,11 +9,13 @@ variable "acl" {
 }
 
 variable "force_destroy" {
+  type        = bool
   description = "Set force_destroy property - unlikely to anything else but may want rid of at some point"
   default     = false
 }
 
 variable "mfa_delete" {
+  type        = bool
   description = "Object to control version behaviour"
   default     = false
 }

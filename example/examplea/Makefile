@@ -34,8 +34,8 @@ docs:
 	terraform-docs md . > README.md
 
 valid:
-	tflint
 	terraform fmt -check=true -diff=true
+	checkov -d . --external-checks-dir ../../checkov
 
 first: init lock
 	terraform apply -target module.statebucket.aws_s3_bucket.statebucket -auto-approve
