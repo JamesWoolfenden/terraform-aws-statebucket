@@ -1,5 +1,3 @@
-[![Slalom][logo]](https://slalom.com)
-
 # terraform-aws-statebucket
 
 [![Build Status](https://github.com/JamesWoolfenden/terraform-aws-statebucket/workflows/Verify%20and%20Bump/badge.svg?branch=master)](https://github.com/JamesWoolfenden/terraform-aws-statebucket)
@@ -49,14 +47,14 @@ terraform {
 }
 ```
 
-# Instructions
+## Instructions
 
 When working with Terraform as part of a team, instead of a local **terraform.tfstate** file, a shared remote state store is required, for AWS this is a S3 bucket.
 But if we want to automate everything via Terraform?
 Traditionally we would have to create the initial bucket by hand via the console or by the cli and the resource unmanaged.
 The module and example solves the issue of creating a state bucket in Terraform using Terraform itself.
 
-## Chicken then Egg
+### Chicken then Egg
 
 The Makefile in folder _examples\examplesA_ has a number of tasks, one specifically to create the initial bucket:
 
@@ -78,7 +76,7 @@ This module implements state locking via DynamoDB, Versioning on files within th
 
 The module also uses a tagging based on the map variable common_tags scheme.
 
-This Scheme here uses as a minimum (see *examplea.auto.tfvars*):
+This Scheme here uses as a minimum (see _examplea.auto.tfvars_):
 
 ```HCL
 common_tags = {
@@ -90,34 +88,35 @@ common_tags = {
 ```
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+
 ## Requirements
 
 No requirements.
 
 ## Providers
 
-| Name | Version |
-|------|---------|
-| aws | n/a |
-| local | n/a |
-| template | n/a |
+| Name     | Version |
+| -------- | ------- |
+| aws      | n/a     |
+| local    | n/a     |
+| template | n/a     |
 
 ## Inputs
 
-| Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
-| acl | Not Likely/Unwise to want a public state bucket, but here's the option | `string` | `"private"` | no |
-| common\_tags | This is the common tags scheme map type for applying tags on resources | `map` | n/a | yes |
-| force\_destroy | Set force\_destroy property - unlikely to anything else but may want rid of at some point | `bool` | `false` | no |
-| mfa\_delete | Object to control version behaviour | `bool` | `false` | no |
-| sse\_algorithm | The type of encryption algorithm to use | `string` | `"aws:kms"` | no |
+| Name          | Description                                                                              | Type     | Default     | Required |
+| ------------- | ---------------------------------------------------------------------------------------- | -------- | ----------- | :------: |
+| acl           | Not Likely/Unwise to want a public state bucket, but here's the option                   | `string` | `"private"` |    no    |
+| common_tags   | This is the common tags scheme map type for applying tags on resources                   | `map`    | n/a         |   yes    |
+| force_destroy | Set force_destroy property - unlikely to anything else but may want rid of at some point | `bool`   | `false`     |    no    |
+| mfa_delete    | Object to control version behaviour                                                      | `bool`   | `false`     |    no    |
+| sse_algorithm | The type of encryption algorithm to use                                                  | `string` | `"aws:kms"` |    no    |
 
 ## Outputs
 
-| Name | Description |
-|------|-------------|
-| bucket\_domain\_name | The FQDN for the bucket |
-| statebucket | The state bucket details |
+| Name               | Description              |
+| ------------------ | ------------------------ |
+| bucket_domain_name | The FQDN for the bucket  |
+| statebucket        | The state bucket details |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
@@ -152,7 +151,7 @@ Please use the [issue tracker](https://github.com/JamesWoolfenden/terraform-aws-
 
 ## Copyrights
 
-Copyright © 2019-2020 [Slalom, LLC](https://slalom.com)
+Copyright © 2019-2020 James Woolfenden
 
 ## License
 
@@ -161,19 +160,19 @@ Copyright © 2019-2020 [Slalom, LLC](https://slalom.com)
 See [LICENSE](LICENSE) for full details.
 
 Licensed to the Apache Software Foundation (ASF) under one
-or more contributor license agreements.  See the NOTICE file
+or more contributor license agreements. See the NOTICE file
 distributed with this work for additional information
-regarding copyright ownership.  The ASF licenses this file
+regarding copyright ownership. The ASF licenses this file
 to you under the Apache License, Version 2.0 (the
 "License"); you may not use this file except in compliance
-with the License.  You may obtain a copy of the License at
+with the License. You may obtain a copy of the License at
 
 <https://www.apache.org/licenses/LICENSE-2.0>
 
 Unless required by applicable law or agreed to in writing,
 software distributed under the License is distributed on an
 "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-KIND, either express or implied.  See the License for the
+KIND, either express or implied. See the License for the
 specific language governing permissions and limitations
 under the License.
 
@@ -185,13 +184,9 @@ under the License.
 [jameswoolfenden_avatar]: https://github.com/jameswoolfenden.png?size=150
 [olmesm_homepage]: https://github.com/olmesm
 [olmesm_avatar]: https://github.com/olmesm.png?size=150
-
-[logo]: https://gist.githubusercontent.com/JamesWoolfenden/5c457434351e9fe732ca22b78fdd7d5e/raw/15933294ae2b00f5dba6557d2be88f4b4da21201/slalom-logo.png
-[website]: https://slalom.com
 [github]: https://github.com/jameswoolfenden
 [linkedin]: https://www.linkedin.com/in/jameswoolfenden/
 [twitter]: https://twitter.com/JimWoolfenden
-
 [share_twitter]: https://twitter.com/intent/tweet/?text=terraform-aws-statebucket&url=https://github.com/JamesWoolfenden/terraform-aws-statebucket
 [share_linkedin]: https://www.linkedin.com/shareArticle?mini=true&title=terraform-aws-statebucket&url=https://github.com/JamesWoolfenden/terraform-aws-statebucket
 [share_reddit]: https://reddit.com/submit/?url=https://github.com/JamesWoolfenden/terraform-aws-statebucket
