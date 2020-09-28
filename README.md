@@ -88,35 +88,34 @@ common_tags = {
 ```
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-
 ## Requirements
 
 No requirements.
 
 ## Providers
 
-| Name     | Version |
-| -------- | ------- |
-| aws      | n/a     |
-| local    | n/a     |
-| template | n/a     |
+| Name | Version |
+|------|---------|
+| aws | n/a |
+| local | n/a |
+| template | n/a |
 
 ## Inputs
 
-| Name          | Description                                                                              | Type     | Default     | Required |
-| ------------- | ---------------------------------------------------------------------------------------- | -------- | ----------- | :------: |
-| acl           | Not Likely/Unwise to want a public state bucket, but here's the option                   | `string` | `"private"` |    no    |
-| common_tags   | This is the common tags scheme map type for applying tags on resources                   | `map`    | n/a         |   yes    |
-| force_destroy | Set force_destroy property - unlikely to anything else but may want rid of at some point | `bool`   | `false`     |    no    |
-| mfa_delete    | Object to control version behaviour                                                      | `bool`   | `false`     |    no    |
-| sse_algorithm | The type of encryption algorithm to use                                                  | `string` | `"aws:kms"` |    no    |
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| acl | Not Likely/Unwise to want a public state bucket, but here's the option | `string` | `"private"` | no |
+| common\_tags | This is the common tags scheme map type for applying tags on resources | `map` | n/a | yes |
+| force\_destroy | Set force\_destroy property - unlikely to anything else but may want rid of at some point | `bool` | `false` | no |
+| mfa\_delete | Object to control version behaviour | `bool` | `false` | no |
+| sse\_algorithm | The type of encryption algorithm to use | `string` | `"aws:kms"` | no |
 
 ## Outputs
 
-| Name               | Description              |
-| ------------------ | ------------------------ |
-| bucket_domain_name | The FQDN for the bucket  |
-| statebucket        | The state bucket details |
+| Name | Description |
+|------|-------------|
+| bucket\_domain\_name | The FQDN for the bucket |
+| statebucket | The state bucket details |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
