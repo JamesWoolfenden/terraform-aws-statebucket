@@ -20,6 +20,11 @@ init:
 plan: init
 	terraform plan -refresh=true
 
+planned: init
+	terraform plan -out tf.plan
+	terraform show -json tf.plan  > tf.json
+	checkov -f tf.json
+
 lock:
 	terraform apply -target module.statebucket.aws_dynamodb_table.dynamodb-state-lock -auto-approve
 
@@ -36,8 +41,10 @@ docs:
 	terraform-docs md . > README.md
 
 valid:
-	terraform fmt
+	terraform fmt -recursive
 	checkov -d . --external-checks-dir ../../checkov
+	tfsec .
+	terrascan scan
 
 first: init lock
 	terraform apply -target module.statebucket.aws_s3_bucket.statebucket -auto-approve
