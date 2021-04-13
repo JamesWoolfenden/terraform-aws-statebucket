@@ -100,42 +100,42 @@ No requirements.
 
 | Name | Version |
 |------|---------|
-| aws | n/a |
-| local | n/a |
-| template | n/a |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | n/a |
+| <a name="provider_local"></a> [local](#provider\_local) | n/a |
+| <a name="provider_template"></a> [template](#provider\_template) | n/a |
 
 ## Modules
 
-No Modules.
+No modules.
 
 ## Resources
 
-| Name |
-|------|
-| [aws_caller_identity](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) |
-| [aws_dynamodb_table](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/dynamodb_table) |
-| [aws_region](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/region) |
-| [aws_s3_bucket](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket) |
-| [aws_s3_bucket_public_access_block](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_public_access_block) |
-| [local_file](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) |
-| [template_file](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file) |
+| Name | Type |
+|------|------|
+| [aws_dynamodb_table.dynamodb-state-lock](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/dynamodb_table) | resource |
+| [aws_s3_bucket.state_bucket](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket) | resource |
+| [aws_s3_bucket_public_access_block.state_bucket](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_public_access_block) | resource |
+| [local_file.remote_state](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
+| [aws_caller_identity.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
+| [aws_region.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/region) | data source |
+| [template_file.remote_state](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file) | data source |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| acl | Not Likely/Unwise to want a public state bucket, but here's the option | `string` | `"private"` | no |
-| common\_tags | This is the common tags scheme map type for applying tags on resources | `map(any)` | n/a | yes |
-| force\_destroy | Set force\_destroy property - unlikely to anything else but may want rid of at some point | `bool` | `false` | no |
-| mfa\_delete | Object to control version behaviour | `bool` | `false` | no |
-| sse\_algorithm | The type of encryption algorithm to use | `string` | `"aws:kms"` | no |
+| <a name="input_acl"></a> [acl](#input\_acl) | Not Likely/Unwise to want a public state bucket, but here's the option | `string` | `"private"` | no |
+| <a name="input_common_tags"></a> [common\_tags](#input\_common\_tags) | This is the common tags scheme map type for applying tags on resources | `map(any)` | n/a | yes |
+| <a name="input_force_destroy"></a> [force\_destroy](#input\_force\_destroy) | Set force\_destroy property - unlikely to anything else but may want rid of at some point | `bool` | `false` | no |
+| <a name="input_mfa_delete"></a> [mfa\_delete](#input\_mfa\_delete) | Object to control version behaviour | `bool` | `false` | no |
+| <a name="input_sse_algorithm"></a> [sse\_algorithm](#input\_sse\_algorithm) | The type of encryption algorithm to use | `string` | `"aws:kms"` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| bucket\_domain\_name | The FQDN for the bucket |
-| statebucket | The state bucket details |
+| <a name="output_bucket_domain_name"></a> [bucket\_domain\_name](#output\_bucket\_domain\_name) | The FQDN for the bucket |
+| <a name="output_statebucket"></a> [statebucket](#output\_statebucket) | The state bucket details |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## Checkov Security tests

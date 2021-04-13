@@ -1,6 +1,7 @@
 resource "aws_s3_bucket" "state_bucket" {
-  #checkov:skip=CKV_AWS_18: "Ensure the S3 bucket has access logging enabled"
-  #checkov:skip=CKV_AWS_52: "Ensure S3 bucket has MFA delete enabled"
+  # checkov:skip=CKV_AWS_144: ADD REASON
+  # checkov:skip=CKV_AWS_18: "Ensure the S3 bucket has access logging enabled"
+  # checkov:skip=CKV_AWS_52: "Ensure S3 bucket has MFA delete enabled"
   bucket        = "${data.aws_caller_identity.current.account_id}-terraform-state"
   acl           = var.acl
   force_destroy = var.force_destroy
