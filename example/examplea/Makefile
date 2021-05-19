@@ -17,7 +17,7 @@ init:
 	$(RM)
 	terraform init -reconfigure -upgrade
 
-plan: init
+plan:
 	terraform plan --out tfplan.binary -refresh=true
 
 planned: init
@@ -25,15 +25,12 @@ planned: init
 	terraform show -json tf.plan  > tf.json
 	checkov -f tf.json
 
-lock:
-	terraform apply -target module.statebucket.aws_dynamodb_table.dynamodb-state-lock -auto-approve
-
-p0:
+p:
 	terraform plan -refresh=true
 
 apply: build
 
-build: init
+build:
 	terraform apply -auto-approve
 
 convert:
@@ -54,19 +51,14 @@ valid:
 	-tfsec .
 	-terrascan scan
 	docker pull checkmarx/kics:latest
-	docker run -v $(CURDIR):/path checkmarx/kics:latest -p "/path"
-
-first: init lock
-	terraform apply -target module.statebucket.aws_s3_bucket.statebucket -auto-approve
-	terraform apply -target module.statebucket.local_file.remote_state -lock=false -auto-approve
-	terraform init -force-copy
+	docker run -v $(CURDIR):/path checkmarx/kics:latest scan --path /path
 
 compare:
 	-checkov -d . --external-checks-dir ../../checkov -o json >../../output/checkov.json
 	-terrascan scan -o json -x json >../../output/terrascan.json
 	-tfsec . --out ../../output/tfsec.json -f json -s
 	docker pull checkmarx/kics:latest
-	docker run -v $(CURDIR):/path -v $(CURDIR)/../../output:/output checkmarx/kics:latest -p "/path" -o "/output/kics.json"
+	docker run -v $(CURDIR):/path -v $(CURDIR)/../../output:/output checkmarx/kics:latest scan --path "/path" -o "/output/kics.json"
 
 conftest: plan convert
 	conftest test ./tfplan.json -p ../../policies
@@ -80,3 +72,6 @@ target:
 
 purge:
 	$(BLAT)
+
+cost:
+	infracost breakdown --path . --usage-file infracost-usage.yml  --sync-usage-file --show-skipped
