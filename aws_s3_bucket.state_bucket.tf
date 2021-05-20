@@ -1,5 +1,4 @@
 # tfsec:ignore:AWS002
-# tfsec:ignore:AWS002
 resource "aws_s3_bucket" "state_bucket" {
   # checkov:skip=CKV_AWS_144: ADD REASON
   # checkov:skip=CKV_AWS_18: "Ensure the S3 bucket has access logging enabled"

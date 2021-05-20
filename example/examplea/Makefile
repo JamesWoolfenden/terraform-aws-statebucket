@@ -17,7 +17,7 @@ init:
 	$(RM)
 	terraform init -reconfigure -upgrade
 
-plan:
+plan: init
 	terraform plan --out tfplan.binary -refresh=true
 
 planned: init
@@ -25,12 +25,15 @@ planned: init
 	terraform show -json tf.plan  > tf.json
 	checkov -f tf.json
 
-p:
+lock:
+	terraform apply -target module.statebucket.aws_dynamodb_table.dynamodb-state-lock -auto-approve
+
+p0:
 	terraform plan -refresh=true
 
 apply: build
 
-build:
+build: init
 	terraform apply -auto-approve
 
 convert:
@@ -52,6 +55,11 @@ valid:
 	-terrascan scan
 	docker pull checkmarx/kics:latest
 	docker run -v $(CURDIR):/path checkmarx/kics:latest scan --path /path
+
+first: init lock
+	terraform apply -target module.statebucket.aws_s3_bucket.statebucket -auto-approve
+	terraform apply -target module.statebucket.local_file.remote_state -lock=false -auto-approve
+	terraform init -force-copy
 
 compare:
 	-checkov -d . --external-checks-dir ../../checkov -o json >../../output/checkov.json
