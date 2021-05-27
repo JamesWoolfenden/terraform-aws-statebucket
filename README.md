@@ -91,6 +91,35 @@ common_tags = {
 }
 ```
 
+## Costs
+
+```text
+ Monthly cost estimate
+
+Project: .
+
+ Name                                                           Monthly Qty  Unit                Monthly Cost
+
+ module.statebucket.aws_dynamodb_table.dynamodb-state-lock
+ ├─ Write capacity unit (WCU)                                        14,600  WCU-hours                 $11.27
+ ├─ Read capacity unit (RCU)                                         14,600  RCU-hours                  $2.25
+ ├─ Data storage                                            Cost depends on usage: $0.30 per GB-months
+ ├─ Point-In-Time Recovery (PITR) backup storage            Cost depends on usage: $0.24 per GB-months
+ ├─ On-demand backup storage                                Cost depends on usage: $0.12 per GB-months
+ ├─ Table data restored                                     Cost depends on usage: $0.18 per GB
+ └─ Streams read request unit (sRRU)                        Cost depends on usage: $0.000000237 per sRRUs
+
+ module.statebucket.aws_s3_bucket.state_bucket
+ └─ Standard
+    ├─ Storage                                              Cost depends on usage: $0.02 per GB-months
+    ├─ PUT, COPY, POST, LIST requests                       Cost depends on usage: $0.0053 per 1k requests
+    ├─ GET, SELECT, and all other requests                  Cost depends on usage: $0.00042 per 1k requests
+    ├─ Select data scanned                                  Cost depends on usage: $0.00225 per GB-months
+    └─ Select data returned                                 Cost depends on usage: $0.0008 per GB-months
+
+ PROJECT TOTAL                                                                                         $13.53
+
+```
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
