@@ -57,7 +57,7 @@ valid:
 	docker run -v $(CURDIR):/path checkmarx/kics:latest scan --path /path
 
 first: init lock
-	terraform apply -target module.statebucket.aws_s3_bucket.statebucket -auto-approve
+	terraform apply -target module.statebucket.aws_s3_bucket.state_bucket -auto-approve
 	terraform apply -target module.statebucket.local_file.remote_state -lock=false -auto-approve
 	terraform init -force-copy
 
