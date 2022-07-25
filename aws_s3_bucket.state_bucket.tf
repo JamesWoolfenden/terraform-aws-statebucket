@@ -9,9 +9,12 @@ resource "aws_s3_bucket" "state_bucket" {
 }
 
 resource "aws_s3_bucket_versioning" "state_bucket" {
+
   bucket     = aws_s3_bucket.state_bucket.id
-  enabled    = true
-  mfa_delete = var.mfa_delete
+  versioning_configuration {
+    status = "Enabled"
+    mfa_delete = "Disabled"
+  }
 }
 
 resource "aws_s3_bucket_acl" "state_bucket" {
