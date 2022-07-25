@@ -1,24 +1,30 @@
-# tfsec:ignore:AWS002
 resource "aws_s3_bucket" "state_bucket" {
   # checkov:skip=CKV_AWS_144: ADD REASON
+  # checkov:skip=CKV_AWS_21:Legacy
   # checkov:skip=CKV_AWS_18: "Ensure the S3 bucket has access logging enabled"
   # checkov:skip=CKV_AWS_52: "Ensure S3 bucket has MFA delete enabled"
-  bucket        = "${data.aws_caller_identity.current.account_id}-terraform-state"
-  acl           = var.acl
+  bucket = "${data.aws_caller_identity.current.account_id}-terraform-state"
+
   force_destroy = var.force_destroy
+}
 
-  versioning {
-    enabled    = true
-    mfa_delete = var.mfa_delete
-  }
+resource "aws_s3_bucket_versioning" "state_bucket" {
+  bucket     = aws_s3_bucket.state_bucket.id
+  enabled    = true
+  mfa_delete = var.mfa_delete
+}
 
-  server_side_encryption_configuration {
-    rule {
-      apply_server_side_encryption_by_default {
-        sse_algorithm = var.sse_algorithm
-      }
+resource "aws_s3_bucket_acl" "state_bucket" {
+  bucket = aws_s3_bucket.state_bucket.id
+  acl    = var.acl
+}
+
+resource "aws_s3_bucket_server_side_encryption_configuration" "state_bucket" {
+  bucket = aws_s3_bucket.state_bucket.id
+
+  rule {
+    apply_server_side_encryption_by_default {
+      sse_algorithm = "aws:kms"
     }
   }
-
-  tags = var.common_tags
 }
