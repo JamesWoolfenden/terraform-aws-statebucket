@@ -30,7 +30,6 @@ Include this repository as a module in your existing Terraform code:
 module statebucket {
   source      = "JamesWoolfenden/statebucket/aws"
   version     = "0.3.1"
-  common_tags = var.common_tags
 }
 ```
 

@@ -14,6 +14,4 @@ resource "aws_dynamodb_table" "dynamodb-state-lock" {
     name = "LockID"
     type = "S"
   }
-
-  tags = var.common_tags
 }
