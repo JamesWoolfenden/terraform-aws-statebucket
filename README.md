@@ -197,7 +197,9 @@ resource "aws_iam_policy" "terraform_pike" {
                 "dynamodb:UpdateTable",
                 "dynamodb:UpdateTimeToLive"
             ],
-            "Resource": "*"
+            "Resource": [
+                "*"
+            ]
         },
         {
             "Sid": "VisualEditor1",
@@ -228,7 +230,9 @@ resource "aws_iam_policy" "terraform_pike" {
                 "s3:PutBucketVersioning",
                 "s3:PutEncryptionConfiguration"
             ],
-            "Resource": "*"
+            "Resource": [
+                "*"
+            ]
         }
     ]
 })
